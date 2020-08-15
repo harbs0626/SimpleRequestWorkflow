@@ -49,10 +49,12 @@
                     <tr><td>Processed Date and Time</td><td>@w.ProcessedDateTime</td></tr>
                 }
 
+                <tr><td>Comments</td><td>@w.Comments</td></tr>
+
                 <tr>
                     <td colspan="2">
                         <div class="text-center">
-                            <a asp-action="RequestList" asp-controller="Home" 
+                            <a asp-action="RequestList" asp-controller="Home"
                                asp-route-_requestStatus="@(w.RequestStatus == "New" ? "All" : w.RequestStatus)"
                                class="btn btn-secondary">
                                 Back to Request List

@@ -38,6 +38,8 @@ namespace SimpleRequestWorkflow.Models
 
                     _itemEntry.ProcessedBy = _workflow.ProcessedBy;
                     _itemEntry.ProcessedDateTime = _workflow.ProcessedDateTime;
+
+                    _itemEntry.Comments = _workflow.Comments;
                 }
             }
 

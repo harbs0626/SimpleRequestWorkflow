@@ -26,6 +26,8 @@ namespace SimpleRequestWorkflow.Models
         [Required]
         public string Remarks { get; set; }
 
+        public string Comments { get; set; }
+
         public string RequestStatus { get; set; }
 
         // ** For new record

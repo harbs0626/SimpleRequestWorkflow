@@ -88,24 +88,6 @@ namespace SimpleRequestWorkflow.Controllers
                         break;
                 }
 
-                //if (TempData["processTag"] != null)
-                //{
-                //    //string _workflowStatus = TempData["processTag"].ToString();
-                //    string _workflowStatus = (_status == "" || _status == null ? "New" : _status);
-
-                //    this._workflowRepository.SaveRequest(_workflow, _workflowStatus);
-
-                //    switch (_workflowStatus)
-                //    {
-                //        case "New":
-                //            TempData["returnMessage"] = $"{_workflow.Title} has been submitted!";
-                //            break;
-                //        default:
-                //            TempData["returnMessage"] = $"{_workflow.Title} has been {_workflowStatus}!";
-                //            break;
-                //    }
-                //}
-
                 //this.ClearProcessTag();
 
                 return RedirectToAction("RequestList");
