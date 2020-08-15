@@ -1,0 +1,85 @@
+﻿@model TransactionType
+
+@{ 
+    if (TempData["returnMessage"] != null)
+    {
+        <div>@TempData["returnMessage"]</div>
+    }
+    else
+    {
+        <div>Please fill-up form below</div>
+    }
+}
+
+<br />
+
+<form asp-action="EditRequest" method="post">
+    <input type="hidden" asp-for="TransactionTypeId" />
+
+    <table>
+        <tr>
+            <td><label asp-for="Title"></label></td>
+            <td><input type="text" asp-for="Title" placeholder="-Title-" /></td>
+        </tr>
+
+        <tr>
+            <td><label asp-for="Code"></label></td>
+            <td><input type="text" asp-for="Code" placeholder="-Code-" /></td>
+        </tr>
+
+        <tr>
+            <td><label asp-for="MinimumLimit">Minimum Limit</label></td>
+            <td><input type="number" asp-for="MinimumLimit" placeholder="0.00" /></td>
+        </tr>
+
+        <tr>
+            <td><label asp-for="MaximumLimit">Maximum Limit</label></td>
+            <td><input type="number" asp-for="MaximumLimit" placeholder="0.00" /></td>
+        </tr>
+
+        <tr>
+            <td><label asp-for="AddedBy">Added By</label></td>
+            <td><input type="text" asp-for="AddedBy" placeholder="-Added By-" /></td>
+        </tr>
+
+        <tr>
+            <td><label asp-for="AddedDateTime">Added Date and Time</label></td>
+            <td><input type="datetime" asp-for="AddedDateTime" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td><label>Actions</label></td>
+            <td>
+                @{
+                    if (TempData["processTag"].ToString() == "New")
+                    {
+                        TempData["processTag"] = "New";
+                        <div><button type="submit">Save</button></div>
+                    }
+                    else
+                    {
+                        TempData["processTag"] = "Updated";
+                        <div><button type="submit">Update</button></div>
+                    }
+                }
+
+                <div><a asp-action="Index">Cancel</a></div>
+            </td>
+        </tr>
+
+        <tr style="visibility:hidden">
+            <td><label asp-for="ModifiedBy">Modified By</label></td>
+            <td><input type="text" asp-for="ModifiedBy" /></td>
+        </tr>
+
+        <tr style="visibility:hidden">
+            <td><label asp-for="ModifiedDateTime">Modified Date and Time</label></td>
+            <td><input type="text" asp-for="ModifiedDateTime" /></td>
+        </tr>
+    </table>
+
+</form>

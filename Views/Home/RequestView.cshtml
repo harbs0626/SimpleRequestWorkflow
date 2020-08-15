@@ -1,0 +1,70 @@
+﻿@model WorkflowRepositoryViewModel
+
+@{
+    Layout = "_HomeLayout";
+}
+
+<h2 class="mt-5">
+    <i class="fa fa-file-alt"></i>
+    @ViewBag.Title
+</h2>
+<hr />
+
+<div class="table-responsive" style="margin-bottom:100px">
+    <table class="table table-bordered">
+        @{
+            foreach (Workflow w in Model.MyWorkflows)
+            {
+                <tr><td style="width:200px">Workflow Id</td><td>@w.WorkflowId</td></tr>
+                <tr><td>Title</td><td>@w.Title</td></tr>
+                <tr><td>Requestor</td><td>@w.Requestor</td></tr>
+                <tr><td>Transaction Type</td><td>@w.TransactionType</td></tr>
+                <tr><td>Transaction Amount</td><td>@w.TransactionAmount</td></tr>
+                <tr><td>Request Date</td><td>@w.RequestedDateTime</td></tr>
+                <tr><td>Request Status</td><td>@w.RequestStatus</td></tr>
+                <tr><td>Remarks</td><td>@w.Remarks</td></tr>
+
+
+
+                @if (w.RequestStatus == "New" && TempData["processTag"].ToString() == "For Processing")
+                {
+                    <tr><td>Requested By</td><td>@w.RequestedBy</td></tr>
+                    <tr><td>Requested Date and Time</td><td>@w.RequestedDateTime</td></tr>
+
+                    <tr>
+                        <td>Action</td>
+                        <td>
+                            @{
+                                TempData["processTag"] = "For Processing";
+                            }
+                            @await Html.PartialAsync("RequestActions2", w)
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr><td>Requested By</td><td>@w.RequestedBy</td></tr>
+                    <tr><td>Requested Date and Time</td><td>@w.RequestedDateTime</td></tr>
+                    <tr><td>Processed By</td><td>@w.ProcessedBy</td></tr>
+                    <tr><td>Processed Date and Time</td><td>@w.ProcessedDateTime</td></tr>
+                }
+
+                <tr>
+                    <td colspan="2">
+                        <div class="text-center">
+                            <a asp-action="RequestList" asp-controller="Home" 
+                               asp-route-_requestStatus="@(w.RequestStatus == "New" ? "All" : w.RequestStatus)"
+                               class="btn btn-secondary">
+                                Back to Request List
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+<div style="margin-bottom:100px">
+    &nbsp;
+</div>

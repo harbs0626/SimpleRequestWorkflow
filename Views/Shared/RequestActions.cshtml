@@ -1,0 +1,9 @@
+﻿@model Workflow
+
+<div>
+    <a asp-action="RequestView" asp-route-_workflowId="@Model.WorkflowId"
+       asp-route-_requestStatus="@Model.RequestStatus">
+        <i class="fa fa-eye"></i>
+        View Details
+    </a>
+</div>

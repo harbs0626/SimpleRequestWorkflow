@@ -1,0 +1,126 @@
+﻿@model Workflow
+
+@{
+    if (TempData["returnMessage"] != null)
+    {
+        <div>@TempData["returnMessage"]</div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            <i class="fa fa-exclamation-circle"></i>
+            Please fill-up form below
+        </div>
+    }
+}
+
+<form asp-action="EditRequest" method="post" asp-controller="Home">
+    <input type="hidden" asp-for="WorkflowId" />
+
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-md-6">
+            <label asp-for="Title"></label>
+            <input type="text" asp-for="Title"
+                   class="form-control" placeholder="-----" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Requestor"></label>
+            <input type="text" asp-for="Requestor"
+                   class="form-control" placeholder="-----" />
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-md-6">
+            <label asp-for="TransactionType">Transaction Type</label>
+            <select asp-for="TransactionType" class="form-control">
+                <option value="">-----</option>
+                <option value="Deposit">Deposit</option>
+                <option value="Withdrawal">Withdrawal</option>
+                <option value="FundTransfer">Fund Transfer</option>
+                <option value="TimeDeposit">Time Deposit</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="TransactionAmount">Transaction Amount</label>
+            <input type="text" asp-for="TransactionAmount"
+                   class="form-control" placeholder="-----" />
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-md-12">
+            <label asp-for="Remarks"></label>
+            <textarea type="text" asp-for="Remarks"
+                      class="form-control" placeholder="-----">
+                </textarea>
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-md-4">
+            <label asp-for="RequestStatus">Request Status</label>
+            @{
+                if (TempData["processTag"] != null)
+                {
+                    <input type="text" asp-for="RequestStatus" value="@TempData["processTag"].ToString()"
+                           class="form-control" readonly="readonly" />
+                }
+            }
+        </div>
+        <div class="col-md-4">
+            <label asp-for="RequestedBy">Requested By</label>
+            <input type="text" asp-for="RequestedBy"
+                class="form-control" placeholder="-----" />
+        </div>
+        <div class="col-md-4">
+            <label asp-for="RequestedDateTime">Requested Date and Time</label>
+            <input type="datetime-local" asp-for="RequestedDateTime" 
+                class="form-control" readonly="readonly"/>
+        </div>
+    </div>
+
+    <div class="row" style="display:@(Model.RequestStatus != "Approved" ? "none;margin-bottom:10px" : "block:margin-bottom:10px")">
+        <div class="col-md-6">
+            <label asp-for="ProcessedBy">Processed By</label>
+            <input type="text" asp-for="ProcessedBy" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="ProcessedDateTime">Processed Date and Time</label>
+            <input type="text" asp-for="ProcessedDateTime" />
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-md-12">
+            <div class="text-center">
+                @{
+                    if (TempData["processTag"].ToString() == "New")
+                    {
+                        TempData["processTag"] = "New";
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-success" 
+                                asp-route-_status="Approved">Approve Request</button>
+
+                        <button type="submit" class="btn btn-warning" 
+                                asp-route-_status="Returned">Return to Requestor</button>
+
+                        <button type="submit" class="btn btn-danger" 
+                                asp-route-_status="Cancelled">Cancel Request</button>
+                    }
+                }
+
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<div style="margin-bottom:100px">
+    &nbsp;
+</div>

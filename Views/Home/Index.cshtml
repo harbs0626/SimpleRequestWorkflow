@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "_HomeLayout";
+}
+
+<h2 class="mt-5">
+    <i class="fa fa-home"></i>
+    @ViewBag.Title
+</h2>
+<hr />
+
+@*<div>
+    <a asp-action="Create">Create Request</a>
+</div>*@
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="bs-callout bs-callout-default">
+            <a asp-action="Create" style="text-decoration:none">
+                <h4>New Request</h4>
+                Click here to create new request(s)
+            </a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="bs-callout bs-callout-default">
+            <a asp-action="RequestList" asp-route-_requestStatus="New" style="text-decoration:none">
+                <h4>Submitted Requests</h4>
+                View all my submitted request(s)
+            </a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="bs-callout bs-callout-success">
+            <a asp-action="RequestList" asp-route-_requestStatus="Approved" style="text-decoration:none">
+                <h4>Approved Requests</h4>
+                View all my approved request(s)
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="bs-callout bs-callout-warning">
+            <a asp-action="RequestList" asp-route-_requestStatus="Returned" style="text-decoration:none">
+                <h4>Returned Requests</h4>
+                View all my returned request(s)
+            </a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="bs-callout bs-callout-danger">
+            <a asp-action="RequestList" asp-route-_requestStatus="Cancelled" style="text-decoration:none">
+                <h4>Cancelled Requests</h4>
+                View all my cancelled request(s)
+            </a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="bs-callout bs-callout-info">
+            <a asp-action="RequestList" asp-route-_requestStatus="Archived" style="text-decoration:none">
+                <h4>Archived Requests</h4>
+                View all my archived request(s)
+            </a>
+        </div>
+    </div>
+</div>

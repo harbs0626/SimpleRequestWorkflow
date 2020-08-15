@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "_HomeLayout";
+}
+
+<h2 class="mt-5">
+    <i class="fa fa-edit"></i>
+    @ViewBag.Title
+</h2>
+<hr />
+
+@await Html.PartialAsync("RequestForm")
