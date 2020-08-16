@@ -2,6 +2,8 @@
 
 @{
     Layout = "_HomeLayout";
+
+    var displayMode = "";
 }
 
 <h2 class="mt-5">@ViewBag.Title</h2>
@@ -23,6 +25,8 @@ else
             <i class="fa fa-exclamation-triangle"></i>
             No record(s) found.
         </div>
+
+        displayMode = "display:none";
     }
     else
     {
@@ -30,10 +34,12 @@ else
             <i class="fa fa-check-circle"></i>
             My Requests has been successfully loaded.
         </div>
+
+        displayMode = "display:block";
     }
 }
 
-<div class="table-responsive">
+<div class="table-responsive" style=@displayMode>
     <table class="table table-bordered">
         <thead class="thead-dark">
             <tr>
